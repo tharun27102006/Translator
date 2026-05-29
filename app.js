@@ -1,6 +1,7 @@
 const STORAGE_KEY = "cityvoice-comments-v2";
 const LEGACY_STORAGE_KEY = "cityvoice-comments-v1";
 const CLIENT_KEY = "cityvoice-client-id";
+const TRANSLATE_API_URL = window.__TRANSLATE_API_URL__ || "https://skills-eta-wine.vercel.app/api/translate";
 
 const form = document.getElementById("commentForm");
 const commentInput = document.getElementById("commentInput");
@@ -233,7 +234,7 @@ async function translateText(text, targetLang) {
   }
 
   try {
-    const response = await fetch("https://skills-eta-wine.vercel.app/api/translate", {
+    const response = await fetch(TRANSLATE_API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
