@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CityVoice Comments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-card">
+      <p class="eyebrow">Inclusive Comment System</p>
+      <h1>CityVoice</h1>
+      <p class="subtitle">
+        Post in any language, translate instantly, and keep discussions clean with automatic moderation.
+      </p>
+      <div class="meta-row">
+        <span id="cityStatus" class="pill">Detecting city...</span>
+        <span class="pill">Auto-remove at 2 dislikes</span>
+        <span class="pill">Special-character filter enabled</span>
+      </div>
+    </section>
+
+    <section class="comment-panel">
+      <form id="commentForm" class="comment-form" novalidate>
+        <label for="commentInput">Write your comment</label>
+        <textarea
+          id="commentInput"
+          name="comment"
+          rows="4"
+          maxlength="300"
+          placeholder="Share your thoughts in any language..."
+          required
+        ></textarea>
+        <div class="form-footer">
+          <p class="hint">Allowed: letters, numbers, spaces, and basic punctuation.</p>
+          <button type="submit" class="btn-primary">Post Comment</button>
+        </div>
+        <p id="formMessage" class="message" aria-live="polite"></p>
+      </form>
+
+      <div class="controls-row">
+        <label for="targetLanguage">Translate comments to:</label>
+        <select id="targetLanguage" aria-label="Target translation language">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="hi">Hindi</option>
+          <option value="ta">Tamil</option>
+          <option value="ar">Arabic</option>
+          <option value="ja">Japanese</option>
+          <option value="zh">Chinese</option>
+        </select>
+      </div>
+
+      <div id="commentsList" class="comments-list" aria-live="polite"></div>
+      <p id="emptyState" class="empty-state">No comments yet. Be the first to post.</p>
+    </section>
+  </main>
+
+  <template id="commentTemplate">
+    <article class="comment-card">
+      <header class="comment-head">
+        <span class="comment-city"></span>
+        <span class="comment-time"></span>
+      </header>
+
+      <p class="comment-text"></p>
+      <p class="translated-text hidden"></p>
+
+      <footer class="comment-actions">
+        <button class="action like" type="button">Like <span class="count like-count">0</span></button>
+        <button class="action dislike" type="button">Dislike <span class="count dislike-count">0</span></button>
+        <button class="action translate" type="button">Translate</button>
+      </footer>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
