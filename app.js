@@ -233,7 +233,7 @@ async function translateText(text, targetLang) {
   }
 
   try {
-    const response = await fetch("/api/translate", {
+    const response = await fetch("https://skills-eta-wine.vercel.app/api/translate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
