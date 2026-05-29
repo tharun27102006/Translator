@@ -7,7 +7,274 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg-top: #f7f2e8;
+      --bg-bottom: #ffffff;
+      --ink: #212121;
+      --muted: #5b5b5b;
+      --surface: rgba(255, 255, 255, 0.8);
+      --surface-strong: #ffffff;
+      --accent: #1d4ed8;
+      --accent-soft: #dbeafe;
+      --danger: #b91c1c;
+      --danger-soft: #fee2e2;
+      --line: rgba(33, 33, 33, 0.13);
+      --shadow: 0 10px 30px rgba(20, 20, 20, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Outfit", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 15% 10%, #fff8e8 0%, transparent 35%),
+        radial-gradient(circle at 85% 20%, #dbeafe 0%, transparent 30%),
+        linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+      padding: 32px 20px;
+    }
+
+    .app-shell {
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+
+    .hero-card,
+    .comment-panel {
+      backdrop-filter: blur(8px);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 34px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 10px 0 8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 65ch;
+      color: var(--muted);
+    }
+
+    .meta-row {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      font-size: 0.82rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+    }
+
+    .comment-panel {
+      padding: 28px;
+    }
+
+    .comment-form {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 11px 12px;
+      font: inherit;
+      background: var(--surface-strong);
+    }
+
+    textarea:focus,
+    select:focus,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .btn-primary {
+      border: none;
+      background: var(--accent);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 120ms ease, filter 120ms ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .message {
+      min-height: 1.2em;
+      margin: 0;
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    .controls-row {
+      margin: 16px 0;
+      display: grid;
+      grid-template-columns: auto minmax(120px, 240px);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .comments-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .comment-card {
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      animation: reveal 240ms ease-out;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .comment-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .comment-text,
+    .translated-text {
+      margin: 10px 0;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .translated-text {
+      padding: 10px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+    }
+
+    .comment-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 7px 11px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.92rem;
+    }
+
+    .action:hover {
+      background: #f6f6f6;
+    }
+
+    .action.dislike {
+      color: var(--danger);
+    }
+
+    .count {
+      font-weight: 700;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 14px;
+      }
+
+      .hero-card,
+      .comment-panel {
+        border-radius: 14px;
+      }
+
+      .hero-card {
+        padding: 20px;
+      }
+
+      .comment-panel {
+        padding: 16px;
+      }
+
+      .controls-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="app-shell">
