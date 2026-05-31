@@ -31,4 +31,6 @@ Option B:
 1. Install Netlify CLI.
 2. Run:
    netlify deploy --prod
-3. Copy the generated https URL and submit it.
+3. Copy the generated https URL and submit it
+   ## Demo of the my translator link
+   https://skills-eta-wine.vercel.app/
